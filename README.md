@@ -7,11 +7,13 @@ A Symfony project created on January 27, 2017, 7:18 pm.
 $ symfony new sicem
 
 #CREAR CARPETA PARA VARIABLES TEMPORALES
+$ mkdir var/sessions
 $ mkdir var/sessions/dev
 
 #DAR PERMISOS A LAS CARPETAS DE ARCHIVOS TEMPORALES
-$ setfacl -R -m u:www-data:rwx -m u:`whoami`:rwx var/cache var/sessions/dev
-$ setfacl -dR -m u:www-data:rwx -m u:`whoami`:rwx var/cache var/sessions/dev
+$ setfacl -R -m u:www-data:rwx -m u:`whoami`:rwx var/logs var/cache var/sessions/dev
+$ setfacl -dR -m u:www-data:rwx -m u:`whoami`:rwx var/logs var/cache var/sessions/dev
+
 
 #CREAR USUARIO Y BASE DE DATOS EN POSTGRES
 createuser -DRSP sicem
