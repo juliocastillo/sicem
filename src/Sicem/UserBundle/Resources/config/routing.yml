@@ -1,0 +1,15 @@
+sicem_user_homepage:
+    path:     /
+    defaults: { _controller: SicemUserBundle:User:home }
+
+sicem_user_login:
+    path:     /login
+    defaults: { _controller: SicemUserBundle:Security:login }
+
+sicem_user_logout:
+    path:     /logout
+    defaults: { _controller: SicemUserBundle:Security:logout }
+
+sicem_user_login_check:
+    path:     /login_check
+    defaults: { _controller: SicemUserBundle:Security:loginCheck }
