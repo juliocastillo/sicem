@@ -13,3 +13,6 @@ sicem_user_logout:
 sicem_user_login_check:
     path:     /login_check
     defaults: { _controller: SicemUserBundle:Security:loginCheck }
+
+sicem_admin:
+    path:     /admin
