@@ -1,9 +1,9 @@
 <?php
 
 namespace Sicem\UserBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * CtlUser
@@ -15,81 +15,71 @@ class CtlUser implements AdvancedUserInterface, \Serializable
 {
     /**
      * @var string
-     *
-     * @ORM\Column(name="username", type="string", length=50, nullable=true)
+     * @Assert\NotNull()
+     * @ORM\Column(name="username", type="string", length=50, nullable=false)
      */
     private $username;
-
     /**
      * @var string
-     *
-     * @ORM\Column(name="first_name", type="string", length=50, nullable=true)
+     * @Assert\NotNull()
+     * @ORM\Column(name="first_name", type="string", length=50, nullable=false)
      */
     private $firstName;
-
     /**
      * @var string
-     *
-     * @ORM\Column(name="last_name", type="string", length=50, nullable=true)
+     * @Assert\NotNull()
+     * @ORM\Column(name="last_name", type="string", length=50, nullable=false)
      */
     private $lastName;
-
     /**
      * @var string
-     *
+     * @Assert\Email()
      * @ORM\Column(name="email", type="string", length=100, nullable=true)
      */
     private $email;
-
     /**
      * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=255, nullable=true)
+     * @Assert\NotNull()
+     * @ORM\Column(name="password", type="string", length=255, nullable=false)
      */
     private $password;
-
     /**
      * @var string
-     *
-     * @ORM\Column(name="role", type="string", length=50, nullable=true)
+     * @Assert\NotNull()
+     * @ORM\Column(name="role", type="string", length=50, nullable=false)
      */
     private $role;
-
     /**
      * @var boolean
-     *
+     * 
      * @ORM\Column(name="is_active", type="boolean", nullable=true)
      */
     private $isActive;
-
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     * 
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
      */
     private $createdAt;
-
     /**
      * @var \DateTime
-     *
+     * 
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updatedAt;
-
     /**
      * @var integer
-     *
-     * @ORM\Column(name="created_by", type="integer", nullable=true)
+     * 
+     * @ORM\Column(name="created_by", type="integer", nullable=false)
      */
     private $createdBy;
-
     /**
      * @var integer
-     *
+     * 
      * @ORM\Column(name="updated_by", type="integer", nullable=true)
      */
     private $updatedBy;
-
+    
     /**
      * @var integer
      *
@@ -99,14 +89,10 @@ class CtlUser implements AdvancedUserInterface, \Serializable
      * @ORM\SequenceGenerator(sequenceName="ctl_user_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
-
-
     public function __construct() {
         $this->isActive = TRUE;
     }
-
     
-
     /**
      * Set username
      *
@@ -117,10 +103,8 @@ class CtlUser implements AdvancedUserInterface, \Serializable
     public function setUsername($username)
     {
         $this->username = $username;
-
         return $this;
     }
-
     /**
      * Get username
      *
@@ -130,7 +114,6 @@ class CtlUser implements AdvancedUserInterface, \Serializable
     {
         return $this->username;
     }
-
     /**
      * Set firstName
      *
@@ -141,10 +124,8 @@ class CtlUser implements AdvancedUserInterface, \Serializable
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
-
         return $this;
     }
-
     /**
      * Get firstName
      *
@@ -154,7 +135,6 @@ class CtlUser implements AdvancedUserInterface, \Serializable
     {
         return $this->firstName;
     }
-
     /**
      * Set lastName
      *
@@ -165,10 +145,8 @@ class CtlUser implements AdvancedUserInterface, \Serializable
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
-
         return $this;
     }
-
     /**
      * Get lastName
      *
@@ -178,7 +156,6 @@ class CtlUser implements AdvancedUserInterface, \Serializable
     {
         return $this->lastName;
     }
-
     /**
      * Set email
      *
@@ -189,10 +166,8 @@ class CtlUser implements AdvancedUserInterface, \Serializable
     public function setEmail($email)
     {
         $this->email = $email;
-
         return $this;
     }
-
     /**
      * Get email
      *
@@ -202,7 +177,6 @@ class CtlUser implements AdvancedUserInterface, \Serializable
     {
         return $this->email;
     }
-
     /**
      * Set password
      *
@@ -213,10 +187,8 @@ class CtlUser implements AdvancedUserInterface, \Serializable
     public function setPassword($password)
     {
         $this->password = $password;
-
         return $this;
     }
-
     /**
      * Get password
      *
@@ -226,7 +198,6 @@ class CtlUser implements AdvancedUserInterface, \Serializable
     {
         return $this->password;
     }
-
     /**
      * Set role
      *
@@ -237,10 +208,8 @@ class CtlUser implements AdvancedUserInterface, \Serializable
     public function setRole($role)
     {
         $this->role = $role;
-
-        return $this;
+        return array($this);
     }
-
     /**
      * Get role
      *
@@ -248,9 +217,8 @@ class CtlUser implements AdvancedUserInterface, \Serializable
      */
     public function getRole()
     {
-        return array($this->role);
+        return $this->role;
     }
-
     /**
      * Set isActive
      *
@@ -261,10 +229,8 @@ class CtlUser implements AdvancedUserInterface, \Serializable
     public function setIsActive($isActive)
     {
         $this->isActive = $isActive;
-
         return $this;
     }
-
     /**
      * Get isActive
      *
@@ -274,7 +240,6 @@ class CtlUser implements AdvancedUserInterface, \Serializable
     {
         return $this->isActive;
     }
-
     /**
      * Set createdAt
      *
@@ -285,10 +250,8 @@ class CtlUser implements AdvancedUserInterface, \Serializable
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
-
     /**
      * Get createdAt
      *
@@ -298,7 +261,6 @@ class CtlUser implements AdvancedUserInterface, \Serializable
     {
         return $this->createdAt;
     }
-
     /**
      * Set updatedAt
      *
@@ -309,10 +271,8 @@ class CtlUser implements AdvancedUserInterface, \Serializable
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
-
         return $this;
     }
-
     /**
      * Get updatedAt
      *
@@ -322,7 +282,6 @@ class CtlUser implements AdvancedUserInterface, \Serializable
     {
         return $this->updatedAt;
     }
-
     /**
      * Set createdBy
      *
@@ -333,10 +292,8 @@ class CtlUser implements AdvancedUserInterface, \Serializable
     public function setCreatedBy($createdBy)
     {
         $this->createdBy = $createdBy;
-
         return $this;
     }
-
     /**
      * Get createdBy
      *
@@ -346,7 +303,6 @@ class CtlUser implements AdvancedUserInterface, \Serializable
     {
         return $this->createdBy;
     }
-
     /**
      * Set updatedBy
      *
@@ -357,10 +313,8 @@ class CtlUser implements AdvancedUserInterface, \Serializable
     public function setUpdatedBy($updatedBy)
     {
         $this->updatedBy = $updatedBy;
-
         return $this;
     }
-
     /**
      * Get updatedBy
      *
@@ -370,7 +324,6 @@ class CtlUser implements AdvancedUserInterface, \Serializable
     {
         return $this->updatedBy;
     }
-
     /**
      * Get id
      *
