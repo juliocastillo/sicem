@@ -1,5 +1,4 @@
 <?php
-
 namespace Sicem\UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
@@ -51,35 +50,35 @@ class CtlUser implements AdvancedUserInterface, \Serializable
     private $role;
     /**
      * @var boolean
-     * 
+     *
      * @ORM\Column(name="is_active", type="boolean", nullable=true)
      */
     private $isActive;
     /**
      * @var \DateTime
-     * 
+     *
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
      */
     private $createdAt;
     /**
      * @var \DateTime
-     * 
+     *
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updatedAt;
     /**
      * @var integer
-     * 
+     *
      * @ORM\Column(name="created_by", type="integer", nullable=false)
      */
     private $createdBy;
     /**
      * @var integer
-     * 
+     *
      * @ORM\Column(name="updated_by", type="integer", nullable=true)
      */
     private $updatedBy;
-    
+
     /**
      * @var integer
      *
@@ -92,7 +91,7 @@ class CtlUser implements AdvancedUserInterface, \Serializable
     public function __construct() {
         $this->isActive = TRUE;
     }
-    
+
     /**
      * Set username
      *
@@ -333,7 +332,7 @@ class CtlUser implements AdvancedUserInterface, \Serializable
     {
         return $this->id;
     }
-    
+
      /** @see \Serializable::serialize() */
     public function serialize()
     {
@@ -353,8 +352,8 @@ class CtlUser implements AdvancedUserInterface, \Serializable
             $this->password,
             $this->isActive
         ) = unserialize($serialized);
-    }   
-    
+    }
+
     public function isAccountNonExpired()
     {
         return true;
@@ -371,19 +370,19 @@ class CtlUser implements AdvancedUserInterface, \Serializable
     {
         return $this->isActive;
     }
-    
+
     public function getRoles()
     {
         return array($this->role);
     }
-    
+
     public function getSalt()
     {
         return null;
     }
-    
+
     public function eraseCredentials()
     {
-        
+
     }
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Sicem\UserBundle\Entity\CtlUserRole" table="ctl_user_role">
+    <id name="id" type="integer" column="id">
+      <generator strategy="SEQUENCE"/>
+      <sequence-generator sequence-name="ctl_user_role_id_seq" allocation-size="1" initial-value="1"/>
+    </id>
+    <field name="role" type="string" column="role" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">rol de para los usuarios</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

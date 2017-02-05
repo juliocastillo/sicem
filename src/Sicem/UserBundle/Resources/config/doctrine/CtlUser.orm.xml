@@ -9,17 +9,17 @@
       <generator strategy="SEQUENCE"/>
       <sequence-generator sequence-name="ctl_user_id_seq" allocation-size="1" initial-value="1"/>
     </id>
-    <field name="username" type="string" column="username" length="50" nullable="true">
+    <field name="username" type="string" column="username" length="50" nullable="false">
       <options>
         <option name="fixed"/>
       </options>
     </field>
-    <field name="firstName" type="string" column="first_name" length="50" nullable="true">
+    <field name="firstName" type="string" column="first_name" length="50" nullable="false">
       <options>
         <option name="fixed"/>
       </options>
     </field>
-    <field name="lastName" type="string" column="last_name" length="50" nullable="true">
+    <field name="lastName" type="string" column="last_name" length="50" nullable="false">
       <options>
         <option name="fixed"/>
       </options>
@@ -29,18 +29,22 @@
         <option name="fixed"/>
       </options>
     </field>
-    <field name="password" type="string" column="password" length="255" nullable="true">
+    <field name="password" type="string" column="password" length="255" nullable="false">
       <options>
         <option name="fixed"/>
       </options>
     </field>
-    <field name="role" type="string" column="role" length="50" nullable="true">
+    <field name="role" type="string" column="role" length="50" nullable="false">
       <options>
         <option name="fixed"/>
       </options>
     </field>
     <field name="isActive" type="boolean" column="is_active" nullable="true"/>
-    <field name="createdAt" type="datetime" column="created_at" nullable="true"/>
+    <field name="createdAt" type="datetime" column="created_at" nullable="true">
+      <options>
+        <option name="comment">Fecha de creacion del registro</option>
+      </options>
+    </field>
     <field name="updatedAt" type="datetime" column="updated_at" nullable="true"/>
     <field name="createdBy" type="integer" column="created_by" nullable="true">
       <options>
@@ -50,6 +54,7 @@
     <field name="updatedBy" type="integer" column="updated_by" nullable="true">
       <options>
         <option name="unsigned"/>
+        <option name="comment">fecha de actualizacion</option>
       </options>
     </field>
   </entity>

@@ -42,10 +42,9 @@ security:
             
     encoders:
         Sicem\UserBundle\Entity\CtlUser:
-            algorithm: bcrypt
-            cost: 4
+            algorithm: sha512
     
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/$, roles: IS_AUTHENTICATED_FULLY }
-        - { path: ^/admin, roles: ROLE_SONATA_ADMIN }
+        - { path: ^/admin, roles: ROLE_ADMIN}

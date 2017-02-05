@@ -8,6 +8,9 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
+use Sicem\UserBundle\Entity\CtlUser as User;
+
+
 class CtlUserAdmin extends AbstractAdmin {
 
     /**
@@ -53,6 +56,16 @@ class CtlUserAdmin extends AbstractAdmin {
      * @param FormMapper $formMapper
      */
     protected function configureFormFields(FormMapper $formMapper) {
+        // consuta a la base para traer los roles y formar el array
+        $em     = $this->getConfigurationPool()->getContainer()->get('doctrine')->getManager();//obtengo el manager
+        $roles  = $em->getRepository('SicemUserBundle:CtlUserRole')->findAll();
+        
+        /* contruir el array de roles para desplegarlos en el admin */
+        $roles_array = array();
+        foreach ($roles As $role){
+            $roles_array[$role->getRole()] = $role->getRole();
+        }
+
         $entity = $this->getSubject();   //obtiene el elemento seleccionado en un objeto
         $id = $entity->getId();
         $formMapper
@@ -70,8 +83,10 @@ class CtlUserAdmin extends AbstractAdmin {
                         'label' => 'Password'));
         }
         $formMapper
-                ->add('role', null, array(
-                    'label' => 'Rol'));
+                ->add('role', 'choice', array(
+                    'choices' => $roles_array
+                    )                        
+                );
                 if ($id) {  // cuando se edite el registro
                 if ($entity->getIsActive() == TRUE) { // si el registro esta activo
                     $formMapper
@@ -112,12 +127,26 @@ class CtlUserAdmin extends AbstractAdmin {
         $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser()->getId();
         $val->setCreatedBy($user);
         $val->setCreatedAt(new \DateTime());
+        
+        $password = $val->getPassword();
+        $encoder = $this->container->get('security.password_storage');
+        $encoded = $encoder->encodePassword($user, $password);
+        
+        $val->setPassword($encoded);
+                
     }
     
     
     public function preUpdate($val) {
-        $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser()->getId();
-        $val->setUpdatedBy($user);
+        $userId = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser()->getId();
+        $val->setUpdatedBy($userId);
         $val->setUpdatedAt(new \DateTime());
+        
+//        $user = new User();
+//        $password = $val->getPassword();
+//        $encoder = $this->getConfigurationPool()->getContainer()->get('security.password_encoder');
+//        $encoded = $encoder->encodePassword($user, $password);
+//        
+//        $val->setPassword($encoded);
     }
 }
