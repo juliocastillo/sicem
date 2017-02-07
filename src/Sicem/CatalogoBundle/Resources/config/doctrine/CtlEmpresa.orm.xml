@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Sicem\CatalogoBundle\Entity\CtlEmpresa" table="ctl_empresa">
+    <id name="id" type="integer" column="id">
+      <generator strategy="SEQUENCE"/>
+      <sequence-generator sequence-name="ctl_empresa_id_seq" allocation-size="1" initial-value="1"/>
+    </id>
+    <field name="origen" type="string" column="origen" length="3" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">origen de la empresa (similar al codigo)</option>
+      </options>
+    </field>
+    <field name="nombre" type="string" column="nombre" length="80" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">nombre de la empresa</option>
+      </options>
+    </field>
+    <field name="registroFiscal" type="string" column="registro_fiscal" length="15" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">registro de la empresa</option>
+      </options>
+    </field>
+    <field name="nit" type="string" column="nit" length="14" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">nit de la empresa</option>
+      </options>
+    </field>
+    <field name="consolidadora" type="boolean" column="consolidadora" nullable="true">
+      <options>
+        <option name="comment">contabilidad consolidadora si o no</option>
+      </options>
+    </field>
+    <field name="createdBy" type="integer" column="created_by" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">id del usuario que creo el registro</option>
+      </options>
+    </field>
+    <field name="createdAt" type="datetime" column="created_at" nullable="true">
+      <options>
+        <option name="comment">Fecha de creacion del registro</option>
+      </options>
+    </field>
+    <field name="updatedBy" type="integer" column="updated_by" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">id del usuario que actualizo el registro</option>
+      </options>
+    </field>
+    <field name="updatedAt" type="datetime" column="updated_at" nullable="true">
+      <options>
+        <option name="comment">Fecha de actualización del registro</option>
+      </options>
+    </field>
+    <field name="isActive" type="boolean" column="is_active" nullable="true">
+      <options>
+        <option name="comment">si el registro esta activo es TRUE</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

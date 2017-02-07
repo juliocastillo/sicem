@@ -1,0 +1,3 @@
+cicem_listar_empresa:
+    path:     /listar_empresa
+    defaults: { _controller: SicemCatalogoBundle:Catalogo:listarEmpresa }

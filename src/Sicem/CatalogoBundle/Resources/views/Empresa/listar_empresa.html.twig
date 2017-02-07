@@ -1,0 +1,57 @@
+
+{% extends 'layout.html.twig' %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('public/js/jquery.dataTables.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#mytable').DataTable();
+        });
+        </script
+    {% endblock %}
+
+    {% block stylesheets %}
+            {{ parent() }}
+            <link rel="stylesheet" href="{{ asset('public/css/jquery.dataTables.min.css') }}">
+    {% endblock %}
+
+    {% block body %}
+        {{ parent() }}
+        <div class="panel panel-success center-block" style="width: 800px;">
+        <div class="panel-body">
+        <table id="mytable" class="display" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+        <th>Corr</th>
+        <th>Nombre</th>
+        <th>Origen</th>
+        <th>A&ntilde;o</th>
+        <th>Acci&oacute;n</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+        <th>Corr</th>
+        <th>Nombre</th>
+        <th>Origen</th>
+        <th>A&ntilde;o</th>
+        <th>Acci&oacute;n</th>
+        </tr>
+        </tfoot>
+        <tbody>
+        {% set i = 1 %}
+        {% for empresa in empresas %}
+        <tr>
+        <td>{{ i }}</td>
+        <td>{{ empresa.nombre }}</td>
+        <td>{{ empresa.origen }}</td>
+        <td>{{ empresa.createdby }}</td>
+        <td><a href="" class="btn btn-success">Abrir</a></td>
+        </tr>
+        {% set i = i + 1 %}
+        {% endfor %}
+        </tbody>
+        </table>
+        </div>
+        </div>
+    {% endblock %}        

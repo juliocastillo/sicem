@@ -2,6 +2,10 @@ sicem_user:
     resource: "@SicemUserBundle/Resources/config/routing.yml"
     prefix:   /
 
+sicem_catalogo:
+    resource: "@SicemCatalogoBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

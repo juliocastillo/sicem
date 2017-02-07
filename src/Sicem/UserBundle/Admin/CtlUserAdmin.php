@@ -124,12 +124,13 @@ class CtlUserAdmin extends AbstractAdmin {
      */
 
      public function prePersist($val) {
-        $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser()->getId();
-        $val->setCreatedBy($user);
+        $userId = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser()->getId();
+        $val->setCreatedBy($userId);
         $val->setCreatedAt(new \DateTime());
         
+        $user = new User();
         $password = $val->getPassword();
-        $encoder = $this->container->get('security.password_storage');
+        $encoder = $this->getConfigurationPool()->getContainer()->get('security.password_encoder');
         $encoded = $encoder->encodePassword($user, $password);
         
         $val->setPassword($encoded);
