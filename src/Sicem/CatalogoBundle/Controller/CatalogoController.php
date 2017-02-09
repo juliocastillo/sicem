@@ -14,7 +14,7 @@ class CatalogoController extends Controller
     {
         return $this->render('SicemCatalogoBundle:Default:index.html.twig');
     }
-    
+
     public function listarEmpresaAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
@@ -23,5 +23,4 @@ class CatalogoController extends Controller
             'empresas' => $empresas
         ));
     }
-    
 }

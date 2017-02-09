@@ -3,15 +3,17 @@
 {% block body %}
 	{{ parent() }}
 	<div class="container">
-        <h2 class="text-center">
+        <h3 class="text-center">
             {{ 'Welcome'|trans }}
             {% if app.user.role == 'ROLE_ADMIN' %}
-                {{ 'Administrator'|trans }}
+				{{ app.user.firstName }}
+                {{ 'Administrator -'|trans }}
+				{{ app.session.get('empresa_nombre') }}
             {% elseif app.user.role == 'ROLE_USER' %}
-                {{ 'User'|trans }}
+				{{ app.user.firstName }}
+                {{ 'User -'|trans }}
+				{{ app.session.get('empresa_nombre') }}
             {% endif %}
-            :
-            {{ app.user.firstName }}
-        </h2>
+        </h3>
 	</div>
 {% endblock %}

@@ -23,8 +23,7 @@ sicem_admin:
 sicem_cambiar_password:
     path:     /cambiar_password
     defaults: { _controller: SicemUserBundle:Security:cambiarPassword }
-    
+
 sicem_password_check:
     path:     /password_check
-    defaults: { _controller: SicemUserBundle:Security:passwordCheck }    
- 
+    defaults: { _controller: SicemUserBundle:Security:passwordCheck }
