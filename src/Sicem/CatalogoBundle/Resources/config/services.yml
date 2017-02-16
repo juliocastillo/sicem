@@ -6,4 +6,16 @@ services:
         class: Sicem\CatalogoBundle\Admin\CtlEmpresaAdmin
         arguments: [~, Sicem\CatalogoBundle\Entity\CtlEmpresa, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Empresas }
+            - { name: sonata.admin, manager_type: orm, group: admin, label: CtlEmpresa }
+
+    sicem_catalogo.admin.ctl_contabilidad:
+        class: Sicem\CatalogoBundle\Admin\CtlContabilidadAdmin
+        arguments: [~, Sicem\CatalogoBundle\Entity\CtlContabilidad, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: CtlContabilidad }
+
+    sicem_catalogo.admin.ctl_anio:
+        class: Sicem\CatalogoBundle\Admin\CtlAnioAdmin
+        arguments: [~, Sicem\CatalogoBundle\Entity\CtlAnio, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: CtlAnio }

@@ -1,0 +1,59 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends 'SonataAdminBundle:CRUD:base_edit.html.twig' %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            // Cambiar departamentos al seleccionar paises
+            $('#{{ admin.uniqid ~ "_idPais" }}').change(function(e) {
+                e.preventDefault();
+                $departamento = $('#{{ admin.uniqid ~ "_idDepartamento" }}');
+                var id_pais = $(this).val();
+                $.ajax({
+                        type: 'GET',
+                        url: Routing.generate('sicem_pais_departamentos', { id: id_pais }),
+                        async: true, //hace mas agil la llamada al ajax
+                        dataType: 'json',
+                        success: function(data) {
+                            $departamento.empty();
+                            $.each(data, function(idx, val) {
+                                $departamento.append($('<option>', {value:val.id, text: val.nombre}));
+                            });
+                        }
+                    });
+                });
+
+            // Cambiar departamentos al seleccionar paises
+            $('#{{ admin.uniqid ~ "_idDepartamento" }}').change(function(e) {
+                e.preventDefault();
+                $municipio = $('#{{ admin.uniqid ~ "_idMunicipio" }}');
+                var id_depto = $(this).val();
+                $.ajax({
+                        type: 'GET',
+                        url: Routing.generate('sicem_depto_municipios', { id: id_depto }),
+                        async: true, //hace mas agil la llamada al ajax
+                        dataType: 'json',
+                        success: function(data) {
+                            $municipio.empty();
+                            $.each(data, function(idx, val) {
+                                $municipio.append($('<option>', {value:val.id, text: val.nombre}));
+                            });
+                        }
+                    });
+                });
+        });
+    </script>
+{% endblock %}

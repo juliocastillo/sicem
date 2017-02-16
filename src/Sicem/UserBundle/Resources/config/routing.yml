@@ -1,3 +1,5 @@
+# src/SicemUserBundle/Resources/config/routing.yml
+
 sicem_user_homepage:
     path:     /
     defaults: { _controller: SicemUserBundle:User:home }
@@ -15,7 +17,7 @@ sicem_user_login_check:
     defaults: { _controller: SicemUserBundle:Security:loginCheck }
 
 sicem_admin:
-    path:     /admin
+    path:     /admin/dashboard/
 
 
 # cambiar password

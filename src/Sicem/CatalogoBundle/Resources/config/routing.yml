@@ -1,3 +1,17 @@
+# src/SicemCatalogoBundle/Resources/config/routing.yml
+
 sicem_listar_empresa:
     path:     /listar_empresa
     defaults: { _controller: SicemCatalogoBundle:Catalogo:listarEmpresa }
+
+sicem_depto_municipios:
+    path:     /depto/municipios
+    defaults: { _controller: SicemCatalogoBundle:Catalogo:deptoMunicipios }
+    options:
+        expose: true
+
+sicem_pais_departamentos:
+    path:     /pais/departamentos
+    defaults: { _controller: SicemCatalogoBundle:Catalogo:paisDepartamentos }
+    options:
+        expose: true

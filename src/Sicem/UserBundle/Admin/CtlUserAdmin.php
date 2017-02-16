@@ -59,7 +59,7 @@ class CtlUserAdmin extends AbstractAdmin {
         // consuta a la base para traer los roles y formar el array
         $em     = $this->getConfigurationPool()->getContainer()->get('doctrine')->getManager();//obtengo el manager
         $roles  = $em->getRepository('SicemUserBundle:CtlUserRole')->findAll();
-        
+
         /* contruir el array de roles para desplegarlos en el admin */
         $roles_array = array();
         foreach ($roles As $role){
@@ -85,7 +85,7 @@ class CtlUserAdmin extends AbstractAdmin {
         $formMapper
                 ->add('role', 'choice', array(
                     'choices' => $roles_array
-                    )                        
+                    )
                 );
                 if ($id) {  // cuando se edite el registro
                 if ($entity->getIsActive() == TRUE) { // si el registro esta activo
@@ -114,40 +114,34 @@ class CtlUserAdmin extends AbstractAdmin {
         ;
     }
 
-    
-    
+
+
      /*
      * Metodos que se ejecuta antes de realizar una actualizacion.
      * Recibe como parametro una entidad; en este caso de tipo CtlPais
      * con los valores del formulario.
-     * 
+     *
      */
 
      public function prePersist($val) {
         $userId = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser()->getId();
         $val->setCreatedBy($userId);
         $val->setCreatedAt(new \DateTime());
-        
+
         $user = new User();
         $password = $val->getPassword();
         $encoder = $this->getConfigurationPool()->getContainer()->get('security.password_encoder');
         $encoded = $encoder->encodePassword($user, $password);
-        
+
         $val->setPassword($encoded);
-                
+
     }
-    
-    
+
+
     public function preUpdate($val) {
         $userId = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser()->getId();
         $val->setUpdatedBy($userId);
         $val->setUpdatedAt(new \DateTime());
-        
-//        $user = new User();
-//        $password = $val->getPassword();
-//        $encoder = $this->getConfigurationPool()->getContainer()->get('security.password_encoder');
-//        $encoded = $encoder->encodePassword($user, $password);
-//        
-//        $val->setPassword($encoded);
+
     }
 }

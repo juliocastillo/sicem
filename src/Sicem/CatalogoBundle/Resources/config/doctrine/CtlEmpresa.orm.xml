@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
   <entity name="Sicem\CatalogoBundle\Entity\CtlEmpresa" table="ctl_empresa">
+    <indexes>
+      <index name="IDX_4EF972C3F57D32FD" columns="id_pais"/>
+      <index name="IDX_4EF972C36325E299" columns="id_departamento"/>
+      <index name="IDX_4EF972C37EAD49C7" columns="id_municipio"/>
+      <index name="IDX_4EF972C3F842EB5F" columns="id_tamanioempresa"/>
+    </indexes>
     <id name="id" type="integer" column="id">
       <generator strategy="SEQUENCE"/>
       <sequence-generator sequence-name="ctl_empresa_id_seq" allocation-size="1" initial-value="1"/>
@@ -34,6 +40,26 @@
         <option name="comment">contabilidad consolidadora si o no</option>
       </options>
     </field>
+    <field name="nitRepresentante" type="string" column="nit_representante" length="14" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="representante" type="string" column="representante" length="80" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="nitContador" type="string" column="nit_contador" length="14" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="contador" type="string" column="contador" length="80" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
     <field name="createdBy" type="integer" column="created_by" nullable="true">
       <options>
         <option name="unsigned"/>
@@ -61,5 +87,25 @@
         <option name="comment">si el registro esta activo es TRUE</option>
       </options>
     </field>
+    <many-to-one field="idTamanioempresa" target-entity="CtlTamanio" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_tamanioempresa" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idMunicipio" target-entity="CtlMunicipio" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_municipio" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idDepartamento" target-entity="CtlDepartamento" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_departamento" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idPais" target-entity="CtlPais" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_pais" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
   </entity>
 </doctrine-mapping>
